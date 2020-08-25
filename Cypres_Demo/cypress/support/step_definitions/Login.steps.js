@@ -1,12 +1,14 @@
+/// <reference types="Cypress" />
+
 import LoginPage from "../PageObjects/LoginPage";
-import Dashboard from "../PageObjects/DashboardPage";
+
 
 const loginPage = new LoginPage();
-const dasboardPage = new Dashboard();
+
 
 
 When(/^I see the logo$/, () => {
-    loginPage.checkElementVisibleByCss(loginPage.logo);
+    cy.CheckElementVisibleByCSS(loginPage.logo);
     // cy.wait(500)
     // cy.eyesCheckWindow('See logo');
     // cy.eyesCheckWindow({
@@ -15,9 +17,9 @@ When(/^I see the logo$/, () => {
     //   });
 });
 
-Then(/^I see warning message below user input$/, function () {
-    loginPage.checkElementVisibleByCss(loginPage.warningMessageEmptyUserName)
-  });
+// Then(/^I see warning message below user input$/, function () {
+//     loginPage.checkElementVisibleByCss(loginPage.warningMessageEmptyUserName)
+//   });
 
   And(/^I enter \"([^\"]*)\" data to user input$/, function (user) {
     loginPage.checkElementVisibleAndTypeByCss(loginPage.userName,user)
@@ -27,19 +29,19 @@ Then(/^I see warning message below user input$/, function () {
     loginPage.checkElementVisibleAndTypeByCss(loginPage.password,password)
   });
 
-  And(/^I see warning message below password input$/, function () {
-    loginPage.checkElementVisibleByCss(loginPage.warningMessageEmptyPassword)
-  });
+  // And(/^I see warning message below password input$/, function () {
+  //   loginPage.checkElementVisibleByCss(loginPage.warningMessageEmptyPassword)
+  // });
 
   And(/^I click on submit button$/, function () {
     loginPage.getElementByCssAndClick(loginPage.loginBtn)
   });
 
-  Then(/^I see notification error message$/, function () {
-    loginPage.checkElementVisibleByCss(loginPage.alertIncorrectUser);
+  // Then(/^I see notification error message$/, function () {
+  //   loginPage.checkElementVisibleByCss(loginPage.alertIncorrectUser);
+  // });
+
+    Then(/^I save to excel$/, function () {
+      var data = [{"name" : "admin", "pass" : "234"}]
+    cy.writeDataFromArrayToExcel(data);
   });
-
-  Then(/^I see Menu icon at dashboard page$/, function () {
-    dasboardPage.checkElementVisibleByCss(dasboardPage.menuIconDashboard);
-  });  
-

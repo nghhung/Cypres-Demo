@@ -1,5 +1,5 @@
 {
-    "ignoreTestFiles": "*.js",
+  "ignoreTestFiles": "*.js",
   "testFiles": "**/*.{feature,features}",
   "defaultCommandTimeout": 50000,
   "env": {
@@ -11,5 +11,6 @@
   "baseUrl": "https://dana-train-web-admin-stg.enouvo.com/",
   "watchForFileChanges": false,
   "chromeWebSecurity": false,
-  "reporter": "nyan"
+  "reporter": "nyan",
+  "supportFile": "./cypress/support/index.js"
 }

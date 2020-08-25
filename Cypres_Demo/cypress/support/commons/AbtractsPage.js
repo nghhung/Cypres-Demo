@@ -59,18 +59,18 @@ class AbtractsPage {
       return cy.log(element)
     }
   
-    checkElementVisibleByXpath = (element) => {
-      // if (cy.xpath(element).should('be.visible')) {
-      //   return true
-      // } else {
-      //   return false
-      // }
-      return cy.xpath(element).should('be.visible')
-    }
+    // checkElementVisibleByXpath = (element) => {
+    //   // if (cy.xpath(element).should('be.visible')) {
+    //   //   return true
+    //   // } else {
+    //   //   return false
+    //   // }
+    //   return cy.xpath(element).should('be.visible')
+    // }
 
-    checkElementVisibleByCss = (element) => {
-      return cy.get(element).should('be.visible')
-    }
+    // checkElementVisibleByCss = (element) => {
+    //   return cy.get(element).should('be.visible')
+    // }
   
     typeToElementByXpath = (element, value) => {
       return cy.xpath(element).should('be.visible').type(value)

@@ -25,6 +25,8 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import 'cypress-file-upload';
 
+const fromDate = Cypress.moment().format('DD-MM-YYYY')
+
 //--------------Function For Open A New Tab---------------
 
 Cypress.Commands.add('openWindow', (url) => {
@@ -58,15 +60,7 @@ Cypress.Commands.add('newUploadBlobFile', (fileName, fileType) => {
     cy.wait(5000)
 })
 
-function makeid(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-}
+
 
 //--------------Function For Writing Data From Array to Excel File Using XLSX---------------
 
@@ -76,6 +70,16 @@ Cypress.Commands.add('writeDataFromArrayToExcel', (dataTest) => {
     const Blob = require('cross-blob');
 
     var wb = XLSX.utils.book_new();
+
+    function makeid(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
 
     for (var i in dataTest) {
         var val = dataTest[i];
@@ -152,20 +156,119 @@ Cypress.Commands.add('LogoutDanaFunctionForPhoneVT', () => {
 //-------------------------Get Element by Xpath----------------------
 Cypress.Commands.add('GetElementByXpath', (element) => {
     
-        return cy.xpath(element)
+    return cy.xpath(element)
       
 })
 
-//-------------------------Get Element by Xpath----------------------
+//-------------------------Get Element by CSS----------------------
+Cypress.Commands.add('GetElementByCSS', (element) => {
+    
+    return cy.get(element)
+      
+})
+    
 
+//-------------------------Get Element by Xpath and Click----------------------
+Cypress.Commands.add('GetElementByXpathAndClick', (element) => {
+    
+    if (cy.xpath(element).should('be.visible')) {
+        cy.wait(500)
+        return cy.xpath(element).click()
+      } else {
+        return console.log("Element is not visible");
+      }
+      
+})
 
-//-------------------------Get Element by Xpath----------------------
+//-------------------------Get Element by CSS and Click----------------------
+Cypress.Commands.add('GetElementByXpathAndClick', (element) => {
+    
+    if (cy.get(element).should('be.visible')) {
+        cy.wait(500)
+        return cy.xpath(element).click()
+      } else {
+        return console.log("Element is not visible");
+      }
+      
+})
 
+//-------------------------Get Element on Dropdown by Xpath----------------------
+Cypress.Commands.add('SelectDropdownElementByXpath', (element,subElement) => {
+    
+    return cy.xpath(element).select(subElement)
+})
 
-//-------------------------Get Element by Xpath----------------------
+//-------------------------Get Element on Dropdown by CSS----------------------
+Cypress.Commands.add('SelectDropdownElementByCSS', (element,subElement) => {
+    
+    return cy.get(element).select(subElement)
+})
 
+//-------------------------Check Element Visible by Xpath----------------------
+Cypress.Commands.add('CheckElementVisibleByXpath', (element) => {
+    
+    return cy.xpath(element).should('be.visible');
+})
 
-//-------------------------Get Element by Xpath----------------------
+//-------------------------Check Element Visible by CSS----------------------
+Cypress.Commands.add('CheckElementVisibleByCSS', (element) => {
+    
+    return cy.get(element).should('be.visible');
+})
 
+//-------------------------Check Element Visible and Type by Xpath----------------------
+Cypress.Commands.add('CheckElementVisibleAndTypeByXpath', (element,value) => {
+    
+    return cy.xpath(element).should('be.visible').type(value)
+})
 
-//-------------------------Get Element by Xpath----------------------
+//-------------------------Check Element Visible and Type by CSS----------------------
+Cypress.Commands.add('CheckElementVisibleAndTypeByCSS', (element,value) => {
+    
+    return cy.get(element).should('be.visible').type(value)
+})
+
+//-------------------------Convert To Number----------------------
+Cypress.Commands.add('ConvertToNumber', (element) => {
+    
+    value = value.match(/\d\.*/g);
+      value = value.join("");
+      value = Number(value);
+      return value;
+})
+
+//-------------------------Hover Element By Xpath----------------------
+Cypress.Commands.add('HoverElementByXpath', (element) => {
+    
+    return cy.xpath(element).trigger('mouseover',{force: true})
+})
+
+//-------------------------Hover Element By CSS----------------------
+Cypress.Commands.add('HoverElementByXpath', (element) => {
+    
+    return cy.get(element).trigger('mouseover',{force: true})
+})
+
+//-------------------------Assert Text by Xpath----------------------
+Cypress.Commands.add('AssertTextByXpath', (element,value) => {
+    
+    return cy.xpath(element).should('have.text', value)
+})
+
+//-------------------------Assert Text by CSS----------------------
+Cypress.Commands.add('AssertTextByXpath', (element,value) => {
+    
+    return cy.get(element).should('have.text', value)
+})
+
+//-------------------------Check Element Visible and Type Then Enter by Xpath----------------------
+Cypress.Commands.add('CheckElementVisibleAndTypeThenEnterByXpath', (element,value) => {
+    
+    return cy.xpath(element).should('be.visible').type(`${value}{enter}`)
+})
+
+//-------------------------Check Element Visible and Type Then Enter by CSS----------------------
+Cypress.Commands.add('CheckElementVisibleAndTypeThenEnterByCSS', (element,value) => {
+    
+    return cy.get(element).should('be.visible').type(`${value}{enter}`)
+})
