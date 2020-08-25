@@ -1,0 +1,48 @@
+{
+  "name": "cypress_cucumber_base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@applitools/eyes-cypress": "^3.10.2",
+    "cucumber-html-reporter": "^5.2.0",
+    "cypress": "^4.4.1",
+    "cypress-cucumber-preprocessor": "^2.3.1",
+    "cypress-file-upload": "^4.0.6",
+    "cypress-xpath": "^1.4.0",
+    "mocha": "^7.1.2",
+    "mochawesome": "^6.1.1",
+    "mochawesome-merge": "^4.0.3",
+    "mochawesome-report-generator": "^5.1.0",
+    "cross-blob": "^2.0.0",
+    "exceljs": "^4.1.0",
+    "file-saver": "^2.0.2",
+    "fs": "0.0.1-security",
+    "jszip": "^3.5.0",
+    "node-xlsx": "^0.15.0",
+    "read-excel-file": "^4.0.6",
+    "xlsx": "^0.16.3",
+    "xlsx-browserify-shim": "0.0.5",
+    "xlsx-parse-json": "^3.1.0",
+    "xlsx-to-json": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "cy:open": "cypress open",
+    "test": "cypress run --spec \"**/*.feature\"",
+    "test:all": "cypress run --spec \"**/*.features\"",
+    "report": "node ./cypress/support/cucumber-html-reporter.js"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "step_definitions": "cypress/support/step_definitions/",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "author": "Bi Nguyen",
+  "license": "ISC"
+}

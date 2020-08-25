@@ -1,0 +1,15 @@
+{
+    "ignoreTestFiles": "*.js",
+  "testFiles": "**/*.{feature,features}",
+  "defaultCommandTimeout": 50000,
+  "env": {
+    "env": "stg"
+  },
+  "viewportHeight": 1080,
+  "viewportWidth": 1920,
+  "requestTimeout": 50000,
+  "baseUrl": "https://dana-train-web-admin-stg.enouvo.com/",
+  "watchForFileChanges": false,
+  "chromeWebSecurity": false,
+  "reporter": "nyan"
+}
