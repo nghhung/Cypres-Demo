@@ -12,5 +12,6 @@
   "watchForFileChanges": false,
   "chromeWebSecurity": false,
   "reporter": "nyan",
-  "supportFile": "./cypress/support/index.js"
+  "supportFile": "./cypress/support/index.js",
+  "projectId": "5rhqc4"
 }

@@ -8,7 +8,7 @@ Create new user
               And I enter "admin" data to user input
               And I enter "234" data to password input
               And I click on submit button
-              Then I save to excel
+              # Then I save to excel
             #  Then I see Menu icon at dashboard page
             #  When I click on announcement icon
             #   And I click on create new announcement button

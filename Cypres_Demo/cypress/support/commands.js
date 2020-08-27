@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import 'cypress-file-upload';
 
-const fromDate = Cypress.moment().format('DD-MM-YYYY')
+const fromDate = Cypress.moment().format('DD-MM-YYYY-HH-mm')
 
 //--------------Function For Open A New Tab---------------
 
@@ -213,7 +213,7 @@ Cypress.Commands.add('CheckElementVisibleByXpath', (element) => {
 //-------------------------Check Element Visible by CSS----------------------
 Cypress.Commands.add('CheckElementVisibleByCSS', (element) => {
     
-    return cy.get(element).should('be.visible');
+    return cy.get(element,{timeout:5000}).should('be.visible');
 })
 
 //-------------------------Check Element Visible and Type by Xpath----------------------
