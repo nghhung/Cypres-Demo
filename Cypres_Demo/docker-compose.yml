@@ -1,0 +1,39 @@
+version: "3.8"
+
+networks:
+    grafana:
+
+services:
+    cypress:
+        image: cypress/base
+        container_name: cypress
+
+    # cypressBrowser:
+    #     image: cypress/browserscypress/base
+    #     container_name: cypressBrowser
+    newman:
+        image: postman/newman_alpine33
+        container_name: newman
+    jmeterTest: 
+        image: justb4/jmeter
+        container_name: jmeter
+
+    prometheus:
+        image: prom/prometheus:v2.16.0
+        volumes:
+        - ./prometheus/:/etc/prometheus/
+        command:
+        - "--config.file=/etc/prometheus/prometheus.yml"
+        - "--storage.tsdb.path=/prometheus"
+        ports:
+        - 9090:9090
+        networks:
+        - grafana 
+
+    grafana:
+        image: grafana/grafana:7.0.4
+        ports:
+        - 3005:3005
+        networks:
+        - grafana
+        
