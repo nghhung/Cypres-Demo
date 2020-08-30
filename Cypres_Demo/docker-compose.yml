@@ -8,8 +8,12 @@ volumes:
 
 services:
     cypress:
-        image: cypress/base
+        image: "cypress/included:4.4.1"
         container_name: cypress
+        volumes:
+            - ./cypress:/cypress
+            - ./cypress.json:/cypress.json
+        command: "npm test"
 
     # cypressBrowser:
     #     image: cypress/browserscypress/base
