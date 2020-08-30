@@ -13,7 +13,9 @@ services:
         volumes:
             - ./cypress:/cypress
             - ./cypress.json:/cypress.json
-        command: "npm test"
+        command: >
+            bash -c "npm install
+            && npm test"
 
     # cypressBrowser:
     #     image: cypress/browserscypress/base
