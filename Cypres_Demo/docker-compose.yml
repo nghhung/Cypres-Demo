@@ -16,6 +16,7 @@ services:
         command: >
             sh -c "npm install &&
                    npm test"
+        entrypoint: [""]
 
     # cypressBrowser:
     #     image: cypress/browserscypress/base
