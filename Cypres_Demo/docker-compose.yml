@@ -14,8 +14,8 @@ services:
             - ./cypress:/cypress
             - ./cypress.json:/cypress.json
         command: >
-            bash -c "npm install
-            && npm test"
+            sh -c "npm install &&
+                   npm test"
 
     # cypressBrowser:
     #     image: cypress/browserscypress/base
