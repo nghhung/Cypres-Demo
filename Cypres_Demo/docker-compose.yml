@@ -8,15 +8,16 @@ volumes:
 
 services:
     cypress:
-        image: "cypress/included:4.4.1"
+        image: cypressinternal/xvfb
         container_name: cypress
         volumes:
             - ./cypress:/cypress
             - ./cypress.json:/cypress.json
-        command: >
-            sh -c "npm install &&
-                   npm test"
-        entrypoint: [""]
+            - ./package.json:/package.json
+            - ./package-lock.json:/package-lock.json
+            - ./node_modules:/node_modules
+        command: "npm test"
+        # working_dir: /cypress
 
     # cypressBrowser:
     #     image: cypress/browserscypress/base

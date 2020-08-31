@@ -1,8 +1,8 @@
-Feature: Create new annoucement
+Feature: Create new user1
 
-Create new user
+Create new user1
 
-        Scenario:Login success with correct data by desktop
+        Scenario:Login success 1
             Given I open Danatrain site by desktop screen
              When I see the logo
               And I enter "admin" data to user input

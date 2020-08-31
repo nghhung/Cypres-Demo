@@ -24,7 +24,10 @@
     "xlsx": "^0.16.3",
     "xlsx-browserify-shim": "0.0.5",
     "xlsx-parse-json": "^3.1.0",
-    "xlsx-to-json": "^0.3.0"
+    "xlsx-to-json": "^0.3.0",
+    "jsonpath": "^1.0.2",
+    "mysql": "^2.18.1",
+    "npm": "^6.14.5"
   },
   "devDependencies": {},
   "scripts": {

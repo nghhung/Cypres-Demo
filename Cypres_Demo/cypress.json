@@ -11,7 +11,13 @@
   "baseUrl": "https://dana-train-web-admin-stg.enouvo.com/",
   "watchForFileChanges": false,
   "chromeWebSecurity": false,
-  "reporter": "nyan",
   "supportFile": "./cypress/support/index.js",
-  "projectId": "5rhqc4"
+  "projectId": "5rhqc4",
+  "reporter": "mochawesome",
+    "reporterOptions": {
+      "reportDir": "cypress/results",
+      "overwrite": true,
+      "html": false,
+      "json": true
+    }
 }
