@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "2c1581c0-76ac-4355-a434-5a568a497725",
+		"name": "Smartos API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login by Admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3dc8104e-a160-4f3a-ad5e-e38d7f95d14f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"admin@enouvo.com\");",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"pm.globals.set(\"admin_token\", jsonData.token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@enouvo.com\",\n    \"password\": \"enouvo123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{localhost}}/api/v1/auth/login",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

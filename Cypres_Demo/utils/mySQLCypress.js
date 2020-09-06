@@ -1,5 +1,5 @@
 const fs = require('fs');
-const dir = '../cypress/cucumber-json';
+const dir = './cypress/cucumber-json';
 const mysql = require('mysql');
 const jp = require('jsonpath');
 
@@ -16,7 +16,7 @@ fs.readdir(dir, (err, files) => {
   // console.log(files.length);
   for (let index = 0; index < files.length; index++) {
     // console.log(files[index]);
-    const content = fs.readFileSync(`../cypress/cucumber-json/${files[index]}`)
+    const content = fs.readFileSync(`./cypress/cucumber-json/${files[index]}`)
     const jsonContent = JSON.parse(content);
     // console.log(jsonContent);
     let steps = jp.query(jsonContent,'$..steps[*]')
