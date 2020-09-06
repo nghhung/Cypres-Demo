@@ -1,0 +1,50 @@
+stages: 
+  - demo_postman_local
+  - notify
+
+demo_summary_local:
+  stage: demo_summary_local
+  tags:
+    - ci
+  script:
+    - npm install
+    - npm run run:k6
+    - newman run ./Postman/*.Scenarios.json -g ./Postman/*Env.json --delay-request 200 -r json-summary --reporter-summary-json-export ./Postman/JsonReport/Postman.json
+    - newman run ./Postman/*.Scenarios.json -g ./Postman/*Env.json --delay-request 200 -r htmlextra --reporter-htmlextra-export ./Postman/HtmlReport/report-local.html
+    - cd utils/
+    - node configureDatabase.js
+    - node execute.tests.js
+    - cd ..
+  when: always
+  artifacts: 
+    when: always
+    paths:
+      - report-local.html
+      - cucumber_report.html
+
+# demo_postman:
+#   stage: demo_postman
+#   image: 
+#     name: postman/newman_alpine33
+#     entrypoint: [""]
+#   script:
+#     - npm install -g newman-reporter-html
+#     - npm install -g newman-reporter-htmlextra
+#     - newman run Test.json --delay-request 3000 --reporters cli,html --reporter-html-export report_demo.html
+#     # - newman run Test.json --delay-request 3000 -r htmlextra --reporter-htmlextra-export report_demo.html
+#   when: always
+#   artifacts: 
+#     when: always
+#     paths:
+#       - report_demo.html
+
+send_email:
+  stage: notify
+  when: always
+  script: curl -s --user "api:$MAILGUN_API_KEY" 
+    "https://api.mailgun.net/v3/$MAILGUN_DOMAIN/messages"
+    -F from='Gitlab <gitlab@example.com>'
+    -F to=$GITLAB_USER_EMAIL
+    -F subject='Test results + report'
+    -F text='Testing some Mailgun awesomeness!'
+    -F attachment='@report_demo.html'
